@@ -1,0 +1,98 @@
+---
+kind: pipeline
+name: debian-stretch-jdk8
+steps:
+- name: check for accidentally dropped creds
+  image: yellowmegaman/container-trufflehog:2.0.98
+  commands:
+  - /usr/local/bin/trufflehog --regex --entropy=False file:///$CI_WORKSPACE
+
+- name: pack
+  image: yellowmegaman/container-packer:1.3.3
+  environment:
+    DOCKER_HOST: tcp://serviced:2375
+    FROM_IMAGE: "yellowmegaman/container-debian:stretch"
+    JDK_VERSION: 8
+    PROJECT_NAME: yellowmegaman
+    DOCKER_USERNAME:
+      from_secret: docker_username
+    DOCKER_PASSWORD:
+      from_secret: docker_password
+    QUAY_USERNAME:
+      from_secret: quay_username
+    QUAY_PASSWORD:
+      from_secret: quay_password
+  commands:
+  - packer build "$DRONE_REPO_NAME".json
+
+services:
+- name: serviced
+  image: plugins/docker
+  entrypoint: [ dockerd ]
+  command: [ '-H', 'tcp://0.0.0.0:2375', '--iptables=false' ]
+
+---
+kind: pipeline
+name: debian-buster-jdk8
+steps:
+- name: check for accidentally dropped creds
+  image: yellowmegaman/container-trufflehog:2.0.98
+  commands:
+  - /usr/local/bin/trufflehog --regex --entropy=False file:///$CI_WORKSPACE
+
+- name: pack
+  image: yellowmegaman/container-packer:1.3.3
+  environment:
+    DOCKER_HOST: tcp://serviced:2375
+    FROM_IMAGE: "yellowmegaman/container-debian:buster"
+    JDK_VERSION: 8
+    PROJECT_NAME: yellowmegaman
+    DOCKER_USERNAME:
+      from_secret: docker_username
+    DOCKER_PASSWORD:
+      from_secret: docker_password
+    QUAY_USERNAME:
+      from_secret: quay_username
+    QUAY_PASSWORD:
+      from_secret: quay_password
+  commands:
+  - packer build "$DRONE_REPO_NAME".json
+
+services:
+- name: serviced
+  image: plugins/docker
+  entrypoint: [ dockerd ]
+  command: [ '-H', 'tcp://0.0.0.0:2375', '--iptables=false' ]
+
+---
+kind: pipeline
+name: debian-buster-jdk11
+steps:
+- name: check for accidentally dropped creds
+  image: yellowmegaman/container-trufflehog:2.0.98
+  commands:
+  - /usr/local/bin/trufflehog --regex --entropy=False file:///$CI_WORKSPACE
+
+- name: pack
+  image: yellowmegaman/container-packer:1.3.3
+  environment:
+    DOCKER_HOST: tcp://serviced:2375
+    FROM_IMAGE: "yellowmegaman/container-debian:buster"
+    JDK_VERSION: 11
+    PROJECT_NAME: yellowmegaman
+    DOCKER_USERNAME:
+      from_secret: docker_username
+    DOCKER_PASSWORD:
+      from_secret: docker_password
+    QUAY_USERNAME:
+      from_secret: quay_username
+    QUAY_PASSWORD:
+      from_secret: quay_password
+  commands:
+  - packer build "$DRONE_REPO_NAME".json
+
+services:
+- name: serviced
+  image: plugins/docker
+  entrypoint: [ dockerd ]
+  command: [ '-H', 'tcp://0.0.0.0:2375', '--iptables=false' ]
