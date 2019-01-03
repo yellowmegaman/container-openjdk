@@ -1,7 +1,7 @@
 {
   "variables": {
     "app":             "{{env `DRONE_REPO_NAME`}}",
-    "from_image":      "{{env `FROM_IMAGE`}}",
+    "from_image":      "{{env `FROM_IMAGE`}}:{{env `DEBIAN_VERSION`}}",
     "project_name":    "{{env `PROJECT_NAME`}}",
     "jdk_version":     "{{env `JDK_VERSION`}}",
     "docker_username": "{{env `DOCKER_USERNAME`}}",

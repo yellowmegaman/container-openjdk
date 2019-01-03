@@ -11,7 +11,8 @@ steps:
   image: yellowmegaman/container-packer:1.3.3
   environment:
     DOCKER_HOST: tcp://serviced:2375
-    FROM_IMAGE: "yellowmegaman/container-debian:stretch"
+    FROM_IMAGE: "yellowmegaman/container-debian"
+    DEBIAN_VERSION: "stretch"
     JDK_VERSION: 8
     PROJECT_NAME: yellowmegaman
     DOCKER_USERNAME:
@@ -44,7 +45,8 @@ steps:
   image: yellowmegaman/container-packer:1.3.3
   environment:
     DOCKER_HOST: tcp://serviced:2375
-    FROM_IMAGE: "yellowmegaman/container-debian:buster"
+    FROM_IMAGE: "yellowmegaman/container-debian"
+    DEBIAN_VERSION: "buster"
     JDK_VERSION: 8
     PROJECT_NAME: yellowmegaman
     DOCKER_USERNAME:
@@ -77,7 +79,8 @@ steps:
   image: yellowmegaman/container-packer:1.3.3
   environment:
     DOCKER_HOST: tcp://serviced:2375
-    FROM_IMAGE: "yellowmegaman/container-debian:buster"
+    FROM_IMAGE: "yellowmegaman/container-debian"
+    DEBIAN_VERSION: "buster"
     JDK_VERSION: 11
     PROJECT_NAME: yellowmegaman
     DOCKER_USERNAME:
