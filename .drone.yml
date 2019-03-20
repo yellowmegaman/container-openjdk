@@ -173,6 +173,7 @@ steps:
     fork: true
     repositories:
       - yellowmegaman/container-sbt
+      - yellowmegaman/container-cassandra
 
 depends_on:
 - debian-buster-jdk8
