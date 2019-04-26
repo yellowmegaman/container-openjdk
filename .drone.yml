@@ -122,4 +122,4 @@ steps:
       - yellowmegaman/container-cassandra
 
 depends_on:
-- debian-buster-jdk8
+- debian-buster-jdk11
