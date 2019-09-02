@@ -20,7 +20,7 @@ jobs:
         unzip -q packer_1.4.3_linux_amd64.zip
         rm packer_1.4.3_linux_amd64.zip
     - name: build
-      run: $GITHUB_WORKSPACE/packer build container-debian.json
+      run: $GITHUB_WORKSPACE/packer build container-openjdk.json
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
