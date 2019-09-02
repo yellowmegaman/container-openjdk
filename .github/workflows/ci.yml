@@ -35,6 +35,6 @@ jobs:
         QUAY_USERNAME: ${{ secrets.QUAY_USERNAME }}
         QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
         DEBIAN_VERSION: ${{ matrix.debian_version }}
-        OPENJDK_VERSION: 11
+        OPENJDK_VERSION: ${{ matrix.openjdk_version }}
         PROJECT_NAME: yellowmegaman
         FROM_IMAGE: yellowmegaman/container-debian
